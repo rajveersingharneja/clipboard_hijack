@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon.in - Online Shopping</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/defence.css">
+</head>
+<body>
+
+
+
+  <!-- MODE TOGGLE BAR -->
+  <div class="mode-toggle-bar">
+    <span class="mode-label">DEMO MODE:</span>
+    <div class="toggle-group">
+      <button class="toggle-btn active-mode" id="mode-attack"
+        onclick="toggleDefence(false)">⚔ Attack Mode</button>
+      <button class="toggle-btn" id="mode-defence"
+        onclick="toggleDefence(true)">🛡 Defence Mode</button>
+    </div>
+    <span class="defence-badge off" id="defence-status">⚠ ATTACK MODE — Defence OFF</span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo" onclick="showPage('home')">amazon<span>.in</span></div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Amazon.in">
+      <button>🔍</button>
+    </div>
+    <div class="header-links">
+      <a href="#">Hello, Sign in<br><b>Account &amp; Lists</b></a>
+      <a href="#">Returns<br><b>&amp; Orders</b></a>
+      <div class="cart-icon" onclick="showPage('cart')">🛒 Cart <b id="cart-count">1</b></div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <span>All</span><span>Today's Deals</span><span>Mobiles</span>
+    <span>Electronics</span><span>Fashion</span><span>Home</span>
+    <span>Books</span><span>Toys</span><span>Grocery</span>
+  </div>
+
+  <!-- ===== HOME PAGE ===== -->
+  <div id="page-home" class="page active">
+    <div class="banner">
+      <h1>🎉 GRAND SALE — Today Only!</h1>
+      <p>Biggest deals of the year across all categories</p>
+      <div class="sale-badge">90% OFF</div>
+    </div>
+
+    <div class="section-title">🔥 Top Deals — 90% Off</div>
+    <div class="products-grid" id="products-container">
+      <!-- Cards injected by products.js -->
+    </div>
+  </div>
+
+  <!-- ===== CART PAGE ===== -->
+  <div id="page-cart" class="page">
+    <div class="inner-page">
+      <button class="back-btn" onclick="showPage('home')">← Continue Shopping</button>
+      <h2>🛒 Shopping Cart</h2>
+      <div class="cart-item">
+        <img id="cart-img" src="" alt="">
+        <div class="cart-item-info">
+          <h3 id="cart-name">-</h3>
+          <div class="in-stock">✔ In Stock</div>
+          <div class="item-price" id="cart-price">₹0</div>
+          <div class="delivery-note">✔ Prime FREE delivery Tomorrow</div>
+          <div class="qty">Qty: <b>1</b></div>
+        </div>
+      </div>
+      <div class="cart-summary">
+        <p>Subtotal (1 item): <span class="total-amount" id="cart-total">₹0</span></p>
+        <button class="btn-primary" onclick="showPage('payment')">Proceed to Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAYMENT PAGE ===== -->
+  <div id="page-payment" class="page">
+    <div class="inner-page">
+      <button class="back-btn" onclick="showPage('cart')">← Back to Cart</button>
+      <div class="payment-box">
+        <h3>💳 Select Payment Method</h3>
+        <div class="pay-method" onclick="selectMethod('card')">
+          <span class="pay-icon">💳</span><span>Credit / Debit Card</span>
+        </div>
+        <div class="pay-method" onclick="selectMethod('netbanking')">
+          <span class="pay-icon">🏦</span><span>Net Banking</span>
+        </div>
+        <div class="pay-method selected" id="upi-method" onclick="selectMethod('upi')">
+          <span class="pay-icon">📱</span><span>UPI</span>
+        </div>
+        <div class="upi-section show" id="upi-section">
+          <label>📋 Pay to this Amazon UPI ID:</label>
+          <div class="upi-address-box" id="upi-address-box">
+            <span id="displayed-upi">amazon@axisbank</span>
+            <button class="copy-btn" onclick="safeCopy()">📋 Copy</button>
+          </div>
+          <p class="copy-notice">👆 Copy the UPI ID and paste it in your UPI app to pay</p>
+          <!-- Defence 3: Visual Hash Fingerprint -->
+          <div class="hash-display" id="hash-display"></div>
+          <input type="text" id="upi-input" placeholder="Or enter your UPI ID (e.g. name@upi)">
+          <button class="btn-primary" onclick="validateAndPay()">
+            Pay ₹<span id="pay-amount">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- EXPLANATION PANEL -->
+      <div class="explain-panel" id="explain-panel">
+        <h4>🔍 How the Clipboard Hijack Works</h4>
+        <p>When you clicked <b>"Copy"</b> in Attack Mode, this ran silently:</p>
+        <pre><code>// What is shown on screen (looks legitimate)
+const DISPLAYED_UPI = "amazon@axisbank";
+
+// Attacker's UPI secretly written to clipboard
+const ATTACKER_UPI  = "attacker@ybl";
+
+function hijackCopy() {
+  navigator.clipboard.writeText(ATTACKER_UPI); // silent swap!
+  showAlert("Copied: " + DISPLAYED_UPI);        // fake confirm
+}</code></pre>
+        <div class="highlight-row">
+          <div class="highlight red">👁 Shown on screen: <b>amazon@axisbank</b></div>
+          <div class="highlight green">📋 In your clipboard: <b>attacker@ybl</b></div>
+        </div>
+        <p class="warn-text">⚠ Victim pastes in UPI app → money goes to attacker!</p>
+
+        <h4 style="margin-top:20px;">🛡 4 Defences Implemented (Switch to Defence Mode)</h4>
+        <div class="defence-cards">
+          <div class="defence-card">
+            <div class="dc-icon">🔁</div>
+            <div class="dc-title">Defence 1 — Clipboard Read-back</div>
+            <div class="dc-desc">After copy, reads the clipboard and compares it to what was shown. Alerts immediately if mismatch detected.</div>
+          </div>
+          <div class="defence-card">
+            <div class="dc-icon">✅</div>
+            <div class="dc-title">Defence 2 — UPI Whitelist Validation</div>
+            <div class="dc-desc">Checks UPI against a trusted merchant whitelist and validates format (name@bank). Rejects unknown handles.</div>
+          </div>
+          <div class="defence-card">
+            <div class="dc-icon">🔑</div>
+            <div class="dc-title">Defence 3 — Visual Hash Fingerprint</div>
+            <div class="dc-desc">Generates a short checksum (★☆★★ A3F7B2) of the UPI so users can verbally verify before paying.</div>
+          </div>
+          <div class="defence-card">
+            <div class="dc-icon">🚫</div>
+            <div class="dc-title">Defence 4 — Paste Interception</div>
+            <div class="dc-desc">Intercepts paste events on the payment field. Blocks and warns if a suspicious UPI is pasted.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS PAGE ===== -->
+  <div id="page-success" class="page">
+    <div class="success-box">
+      <div class="success-icon">✅</div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Your order has been confirmed. Delivery by Tomorrow.</p>
+      <button class="btn-primary" onclick="showPage('home')">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- COPY ALERT TOAST (Attack Mode) -->
+  <div class="toast" id="copy-toast">
+    ✅ Copied: <b>amazon@axisbank</b><br>
+    <small>⚠ But clipboard actually holds: <b>attacker@ybl</b></small>
+  </div>
+
+  <!-- DEFENCE TOAST -->
+  <div class="defence-toast" id="defence-toast"></div>
+
+  <!-- DEFENCE ALERT MODAL -->
+  <div class="defence-alert-overlay" id="defence-alert-overlay" onclick="closeDefenceAlert()">
+    <div class="defence-alert-box danger" id="defence-alert-box" onclick="event.stopPropagation()">
+      <div class="defence-alert-icon">🚨</div>
+      <div id="defence-alert-title">Alert</div>
+      <pre id="defence-alert-msg"></pre>
+      <button class="defence-alert-close" onclick="closeDefenceAlert()">Dismiss</button>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/hijack.js"></script>
+  <script src="js/defence.js"></script>
+</body>
+</html>

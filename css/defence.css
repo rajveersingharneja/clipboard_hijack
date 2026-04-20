@@ -1,0 +1,215 @@
+/* ================================================
+   defence.css — Defence Mode UI Styles
+   ================================================ */
+
+/* ── Mode Toggle Bar ─────────────────────────── */
+.mode-toggle-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #0d0d1a;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+}
+
+.mode-label {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.toggle-group {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #333;
+}
+
+.toggle-btn {
+  padding: 7px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  background: #1a1a2e;
+  color: #888;
+}
+.toggle-btn:hover { background: #2a2a3e; }
+.toggle-btn.active-mode {
+  background: #e94560;
+  color: white;
+}
+#mode-defence.active-mode {
+  background: #00c853;
+  color: white;
+}
+
+.defence-badge {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+.defence-badge.off {
+  background: #e94560;
+  color: white;
+}
+.defence-badge.on {
+  background: #00c853;
+  color: #000;
+}
+
+/* ── Hash Display ────────────────────────────── */
+.hash-display {
+  display: none;
+  margin-top: 10px;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #e2e2e2;
+  gap: 8px;
+  flex-direction: column;
+}
+.hash-display[style*="block"] { display: flex !important; }
+
+.hash-label { color: #aaa; font-size: 11px; }
+.hash-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff88;
+  letter-spacing: 2px;
+}
+.hash-hint { font-size: 11px; color: #666; }
+
+/* ── Defence Toast ───────────────────────────── */
+.defence-toast {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  z-index: 9999;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+  white-space: pre-line;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+  line-height: 1.6;
+}
+.defence-toast.show { display: block; animation: popUp 0.3s ease; }
+.defence-toast.success { background: #00c853; color: #000; }
+.defence-toast.warn    { background: #ff6d00; color: white; }
+.defence-toast.info    { background: #0091ea; color: white; }
+.defence-toast.danger  { background: #cc0000; color: white; }
+
+@keyframes popUp {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+
+/* ── Defence Alert Modal ─────────────────────── */
+.defence-alert-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.defence-alert-box {
+  background: white;
+  border-radius: 12px;
+  padding: 28px 24px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  border-top: 6px solid #cc0000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.defence-alert-box.danger { border-top-color: #cc0000; }
+.defence-alert-box.success { border-top-color: #00c853; }
+
+.defence-alert-icon { font-size: 48px; margin-bottom: 12px; }
+
+#defence-alert-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #cc0000;
+  margin-bottom: 12px;
+}
+.defence-alert-box.success #defence-alert-title { color: #00c853; }
+
+#defence-alert-msg {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.7;
+  white-space: pre-line;
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.defence-alert-close {
+  background: #131921;
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.defence-alert-close:hover { background: #374151; }
+
+/* ── Defence Info Cards (explanation panel) ───── */
+.defence-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+@media (max-width: 500px) {
+  .defence-cards { grid-template-columns: 1fr; }
+}
+
+.defence-card {
+  background: #0d0d1a;
+  border: 1px solid #2a2a3e;
+  border-radius: 8px;
+  padding: 14px;
+}
+.defence-card .dc-icon { font-size: 22px; margin-bottom: 6px; }
+.defence-card .dc-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #00ff88;
+  margin-bottom: 4px;
+}
+.defence-card .dc-desc {
+  font-size: 11px;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* ── Secure UPI Box (defence mode style) ──────── */
+.upi-address-box.secure {
+  border-color: #00c853;
+  background: #f0fff5;
+}

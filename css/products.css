@@ -1,0 +1,107 @@
+/* ================================================
+   products.css — Product Card Grid Styles
+   ================================================ */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 14px 16px 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s;
+  position: relative;
+  border: 1px solid #e3e3e3;
+}
+.card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  transform: translateY(-2px);
+}
+
+.card .badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #cc0c39;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 13px;
+  color: #0F1111;
+  margin-bottom: 5px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card .rating {
+  color: #FFA41C;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.card .rating span {
+  color: #007185;
+  font-size: 11px;
+}
+
+.card .price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #B12704;
+}
+
+.card .original {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 12px;
+}
+
+.card .discount {
+  color: #007600;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.card .prime {
+  color: #00A8E1;
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.card .add-cart-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background: #FFD814;
+  border: 1px solid #FCD200;
+  padding: 7px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.card .add-cart-btn:hover { background: #F7CA00; }

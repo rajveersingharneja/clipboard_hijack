@@ -1,0 +1,411 @@
+/* ================================================
+   style.css — Global Layout, Header, Pages
+   Amazon Clipboard Hijack Demo — Cybersec Project
+   ================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #eaeded;
+  color: #0F1111;
+}
+
+/* ===== DEMO BANNER ===== */
+.demo-banner {
+  background: #1a1a2e;
+  color: #e94560;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid #e94560;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: #131921;
+  color: white;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  color: #ff9900;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Times New Roman', serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.logo span { color: white; }
+
+.search-bar {
+  flex: 1;
+  display: flex;
+}
+.search-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}
+.search-bar button {
+  background: #febd69;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  gap: 18px;
+  font-size: 12px;
+}
+.header-links a {
+  color: white;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.header-links a:hover { text-decoration: underline; }
+
+.cart-icon {
+  color: #ff9900;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #232f3e;
+  padding: 6px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 13px;
+  color: white;
+}
+.navbar span {
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.navbar span:hover { outline: 1px solid white; }
+
+/* ===== PAGES ===== */
+.page { display: none; }
+.page.active { display: block; }
+
+.inner-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+/* ===== SALE BANNER ===== */
+.banner {
+  background: linear-gradient(135deg, #FF6B35, #F7C59F, #ffffff, #004E89);
+  text-align: center;
+  padding: 36px 20px;
+  color: white;
+}
+.banner h1 {
+  font-size: 34px;
+  font-weight: 900;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+.banner p {
+  font-size: 17px;
+  margin-top: 8px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+.sale-badge {
+  display: inline-block;
+  background: #FF0000;
+  color: white;
+  font-size: 44px;
+  font-weight: 900;
+  padding: 10px 28px;
+  border-radius: 12px;
+  margin-top: 14px;
+  animation: pulse 1s infinite alternate;
+  box-shadow: 0 4px 20px rgba(255,0,0,0.5);
+}
+@keyframes pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 16px 20px 8px;
+  background: white;
+  border-top: 3px solid #febd69;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  background: none;
+  border: none;
+  color: #007185;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  padding: 0;
+}
+.back-btn:hover { text-decoration: underline; }
+
+/* ===== CART ===== */
+.cart-item {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.cart-item img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-right: 1px solid #eee;
+  padding-right: 14px;
+}
+.cart-item-info { flex: 1; }
+.cart-item-info h3 { font-size: 15px; margin-bottom: 6px; }
+.in-stock { color: #007600; font-size: 13px; }
+.item-price { font-size: 22px; color: #B12704; font-weight: bold; margin: 6px 0; }
+.delivery-note { font-size: 12px; color: #007600; }
+.qty { font-size: 13px; margin-top: 6px; }
+
+.cart-summary {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: right;
+  font-size: 15px;
+}
+.total-amount { font-size: 22px; font-weight: bold; }
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background: #FFD814;
+  border: 1px solid #FCD200;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 12px;
+  width: 100%;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #F7CA00; }
+
+/* ===== PAYMENT ===== */
+.payment-box {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.payment-box h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.pay-method {
+  border: 2px solid #eee;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: border-color 0.2s, background 0.2s;
+}
+.pay-method:hover { border-color: #aaa; }
+.pay-method.selected {
+  border-color: #FF9900;
+  background: #fffbe6;
+}
+.pay-icon { font-size: 22px; }
+
+.upi-section { display: none; margin-top: 16px; }
+.upi-section.show { display: block; }
+
+.upi-section label {
+  font-size: 13px;
+  color: #555;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.upi-address-box {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: monospace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copy-btn {
+  background: #131921;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+.copy-btn:hover { background: #374151; }
+
+.copy-notice {
+  font-size: 12px;
+  color: #777;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+#upi-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 4px;
+}
+#upi-input:focus { border-color: #FF9900; }
+
+/* ===== SUCCESS PAGE ===== */
+.success-box {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.success-icon { font-size: 72px; margin-bottom: 16px; }
+.success-box h2 { font-size: 26px; margin-bottom: 10px; }
+.success-box p { color: #555; margin-bottom: 20px; }
+.success-box .btn-primary { max-width: 220px; }
+
+/* ===== TOAST ALERT ===== */
+.toast {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #cc0000;
+  color: white;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 9999;
+  max-width: 340px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  line-height: 1.7;
+  pointer-events: none;
+}
+.toast.show {
+  display: block;
+  animation: slideIn 0.35s ease forwards;
+}
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ===== EXPLANATION PANEL ===== */
+.explain-panel {
+  background: #1a1a2e;
+  color: #e2e2e2;
+  padding: 22px 24px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.explain-panel h4 {
+  color: #e94560;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.explain-panel pre {
+  background: #0d0d1a;
+  color: #00ff88;
+  padding: 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.explain-panel code {
+  font-family: 'Courier New', monospace;
+}
+
+.highlight-row {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+.highlight {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  min-width: 180px;
+}
+.highlight.red  { background: #2d1a1a; border-left: 4px solid #e94560; }
+.highlight.green { background: #1a2d1a; border-left: 4px solid #00ff88; }
+
+.warn-text {
+  color: #ff9900;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.prevent-list {
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+}
+.prevent-list li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  font-size: 13px;
+  color: #ccc;
+}
+.prevent-list li::before {
+  content: "✔";
+  color: #00ff88;
+  position: absolute;
+  left: 0;
+}
